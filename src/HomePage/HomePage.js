@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from 'Api/ApiService';
-import style from './HomeView.module.css';
+import style from './HomePage.module.css';
 
-export default function HomeView() {
+export default function HomePage() {
   const [moviesList, setMoviesList] = useState([]);
 
   useEffect(() => {

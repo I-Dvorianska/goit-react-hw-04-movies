@@ -1,6 +1,6 @@
 import Navigation from 'Navigation/Navigation';
-import HomeView from 'HomeView/HomeView';
-import MoviesView from './MoviesView/MoviesView';
+import HomePage from 'HomePage/HomePage';
+import MoviesPage from './MoviesPage/MoviesPage';
 import { Route, Switch } from 'react-router';
 
 export default function App() {
@@ -9,10 +9,10 @@ export default function App() {
       <Navigation />
       <Switch>
         <Route path="/" exact>
-          <HomeView />
+          <HomePage />
         </Route>
         <Route path="/movies">
-          <MoviesView />
+          <MoviesPage />
         </Route>
       </Switch>
     </>
