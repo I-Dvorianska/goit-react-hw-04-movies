@@ -1,28 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchTrendingMovies } from 'Api/ApiService';
-import style from './HomePage.module.css';
+import { fetchTrendingMovies } from 'Api/apiService';
+import MoviesList from 'MoviesList/MoviesList';
 
 export default function HomePage() {
-  const [moviesList, setMoviesList] = useState([]);
+  const [homeMovies, setHomeMovies] = useState([]);
 
   useEffect(() => {
     fetchTrendingMovies().then(res => {
-      console.log(res.results);
-      setMoviesList(prevState => [...prevState, ...res.results]);
+      setHomeMovies(res.results);
     });
   }, []);
 
-  return (
-    <ul>
-      {moviesList &&
-        moviesList.map(movie => (
-          <li className={style.movieItem} key={movie.id}>
-            <Link to={`/movies.${movie.id}`}>
-              {movie.name} {movie.title}
-            </Link>
-          </li>
-        ))}
-    </ul>
-  );
+  return <MoviesList moviesList={homeMovies} />;
 }

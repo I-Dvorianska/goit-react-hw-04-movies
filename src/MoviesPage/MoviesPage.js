@@ -1,23 +1,28 @@
 import { useState } from 'react';
-import style from './MoviesPage.module.css';
+import MoviesSearch from './MoviesSearch';
+import { fetchByInputValue } from '../Api/apiService';
+import MoviesList from 'MoviesList/MoviesList';
+
 export default function MoviesPage() {
   const [inputValue, setInputvalue] = useState('');
+  const [searchMoviesList, setSearchMoviesList] = useState([]);
 
   function handleInputChange(e) {
-    setInputvalue(e.currentTarget.value);
+    setInputvalue(e.currentTarget.value.trim());
+  }
+
+  function handleMovieSearch() {
+    fetchByInputValue(inputValue).then(res => setSearchMoviesList(res.results));
   }
 
   return (
     <div>
-      <input
+      <MoviesSearch
+        inputValue={inputValue}
         onChange={handleInputChange}
-        type="text"
-        name="movie"
-        placeholder="Movie"
-        value={inputValue}
-        className={style.searchInput}
+        onBtnClick={handleMovieSearch}
       />
-      <button className={style.searchBtn}>Search</button>
+      <MoviesList moviesList={searchMoviesList} />
     </div>
   );
 }
