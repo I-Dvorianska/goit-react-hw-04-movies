@@ -14,6 +14,13 @@ export default function MovieInfo({ movie }) {
     }
   }
 
+  function getReleaseYear() {
+    if (movie.release_date) {
+      const date = movie.release_date.split('-');
+      return date[0];
+    }
+  }
+
   return (
     <>
       <div className={s.wrapper}>
@@ -22,7 +29,9 @@ export default function MovieInfo({ movie }) {
           alt={movie.original_title}
         />
         <div className={s.info}>
-          <h1>{movie.original_title}</h1>
+          <h1>
+            {movie.original_title}({getReleaseYear()})
+          </h1>
           <p>User Score: {movie.vote_average * 10}%</p>
           <h2>Overview</h2>
           <p>{movie.overview}</p>

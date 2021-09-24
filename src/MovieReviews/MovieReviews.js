@@ -18,7 +18,7 @@ export default function MovieReviews({ id }) {
           </li>
         ))
       ) : (
-        <p>'You can leave your review first'</p>
+        <p>You can leave your review first</p>
       )}
     </ul>
   );
