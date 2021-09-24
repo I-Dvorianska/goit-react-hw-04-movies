@@ -1,4 +1,5 @@
 import { NavLink, useRouteMatch } from 'react-router-dom';
+import s from 'MovieDetailsPage/MovieInfo/MovieInfo.module.css';
 
 export default function MovieInfo({ movie }) {
   const { url } = useRouteMatch();
@@ -14,26 +15,34 @@ export default function MovieInfo({ movie }) {
   }
 
   return (
-    <div>
-      <img
-        src={movie.poster_path && `${IMG_BASE}${movie.poster_path}`}
-        alt={movie.original_title}
-      />
-      <h1>{movie.original_title}</h1>
-      <p>User Score: </p>
-      <h2>Overview</h2>
-      <p>{movie.overview}</p>
-      <h3>Genres</h3>
-      <p>{movieGenres()}</p>
+    <>
+      <div className={s.wrapper}>
+        <img
+          src={movie.poster_path && `${IMG_BASE}${movie.poster_path}`}
+          alt={movie.original_title}
+        />
+        <div className={s.info}>
+          <h1>{movie.original_title}</h1>
+          <p>User Score: {movie.vote_average * 10}%</p>
+          <h2>Overview</h2>
+          <p>{movie.overview}</p>
+          <h3>Genres</h3>
+          <p>{movieGenres()}</p>
+        </div>
+      </div>
 
-      <ul>
+      <ul className={s.list}>
         <li>
-          <NavLink to={`${url}/cast`}>Cast</NavLink>
+          <NavLink className={s.links} activeClassName={s.activeLink} to={`${url}/cast`}>
+            Cast
+          </NavLink>
         </li>
         <li>
-          <NavLink to={`${url}/reviews`}>Reviews</NavLink>
+          <NavLink className={s.links} activeClassName={s.activeLink} to={`${url}/reviews`}>
+            Reviews
+          </NavLink>
         </li>
       </ul>
-    </div>
+    </>
   );
 }

@@ -6,6 +6,7 @@
 
 .actor {
   margin: 20px;
+  width: 250px;
 }
 
 .name {
@@ -15,4 +16,5 @@
 .character {
   margin: 0px;
   font-weight: 500;
+  width: 80%;
 }

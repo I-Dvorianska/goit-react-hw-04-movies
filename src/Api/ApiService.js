@@ -22,3 +22,8 @@ export async function fetchCast(id) {
   const response = await fetch(`${URL}/movie/${id}/credits?api_key=${KEY}&language=en-US`);
   return response.ok ? await response.json() : Promise.reject(new Error('Not found'));
 }
+
+export async function fetchReviews(id) {
+  const response = await fetch(`${URL}/movie/${id}/reviews?api_key=${KEY}&language=en-US&page=1`);
+  return response.ok ? await response.json() : Promise.reject(new Error('Not found'));
+}

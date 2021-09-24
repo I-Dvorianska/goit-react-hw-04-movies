@@ -9,13 +9,10 @@ export default function MovieCast({ id }) {
 
   useEffect(() => {
     fetchCast(id).then(cast => {
-      console.log(cast.cast);
       const mainCast = cast.cast.splice(0, 6);
       setCast(mainCast);
     });
   }, [id]);
-
-  console.log(cast);
 
   return (
     <ul className={s.castList}>

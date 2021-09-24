@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchMovieCard } from 'Api/apiService';
 import { useParams, Route } from 'react-router-dom';
-import { useState } from 'react/cjs/react.development';
+import s from 'MovieDetailsPage/MovieDetailsPage.module.css';
 import MovieInfo from './MovieInfo/MovieInfo';
 import MovieCast from 'MovieCast/MovieCast';
+import MovieReviews from 'MovieReviews/MovieReviews';
 
 export default function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
@@ -16,12 +17,15 @@ export default function MovieDetailsPage() {
   }, [movieId]);
 
   return (
-    <>
+    <div className={s.wrapper}>
       {movie !== [] && <MovieInfo movie={movie} />}
 
       <Route path="/movies/:movieId/cast">
         <MovieCast id={movieId} />
       </Route>
-    </>
+      <Route path="/movies/:movieId/reviews">
+        <MovieReviews id={movieId} />
+      </Route>
+    </div>
   );
 }
