@@ -1,6 +1,6 @@
 import style from './MoviesSearch.module.css';
 
-export default function MoviesSearch({ onChange, inputValue, onBtnClick }) {
+export function MoviesSearchForm({ onChange, inputValue, onBtnClick }) {
   return (
     <>
       <input
