@@ -14,7 +14,7 @@ export default function HomePage() {
 
   return (
     <ul>
-      {moviesList &&
+      {moviesList !== [] &&
         moviesList.map(movie => (
           <li className={style.movieItem} key={movie.id}>
             <Link to={`/movies/${movie.id}`}>{movie.name ? movie.name : movie.title}</Link>
