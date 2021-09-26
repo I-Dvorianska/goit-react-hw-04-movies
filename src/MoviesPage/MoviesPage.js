@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { MoviesSearchForm } from './MoviesSearchForm';
-import SearchMovieList from '../SearchMovieList/SearchMovieList';
+import MovieList from '../MovieList/MovieList';
 import { fetchByInputValue } from '../Api/apiService';
-import { Route, useHistory, useLocation, useRouteMatch } from 'react-router';
+import s from './MoviesSearch.module.css';
+import { Link, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
+// import { Link, useRouteMatch } from 'react-router-dom';
 
 export default function MoviesPage() {
   const [inputValue, setInputvalue] = useState('');
@@ -16,19 +18,18 @@ export default function MoviesPage() {
   }
 
   function handleMovieSearch() {
-    fetchByInputValue(inputValue).then(res => setSearchMoviesList(res.results));
+    if (inputValue) {
+      fetchByInputValue(inputValue).then(res => setSearchMoviesList(res.results));
+      changeQuery();
+    }
   }
 
-  // function changeParams() {
-  //   history.push({
-  //     ...location,
-  //     search: `query=${inputValue}`,
-  //   });
-  // }
-
-  // console.log(location);
-  // console.log(location.search);
-  // console.log(`${path}${location.search}`);
+  function changeQuery() {
+    history.push({
+      ...location,
+      search: `query=${inputValue}`,
+    });
+  }
 
   return (
     <div>
@@ -38,9 +39,14 @@ export default function MoviesPage() {
         onBtnClick={handleMovieSearch}
       />
 
-      <Route path={`${path}${location.search}`}>
-        <SearchMovieList movieList={searchMoviesList} />
-      </Route>
+      <ul>
+        {searchMoviesList !== [] &&
+          searchMoviesList.map(movie => (
+            <li className={s.movieItem} key={movie.id}>
+              <Link to={`${path}/${movie.id}`}>{movie.name ? movie.name : movie.title}</Link>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }

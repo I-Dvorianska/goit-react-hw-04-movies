@@ -17,3 +17,7 @@
   color: rgba(255, 255, 255, 0.829);
   background-color: rgba(34, 139, 34, 0.808);
 }
+.movieItem {
+  list-style: none;
+  margin-top: 10px;
+}

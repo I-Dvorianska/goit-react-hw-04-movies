@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchReviews } from 'Api/apiService';
+import s from './MovieReviews.module.css';
 
 export default function MovieReviews({ id }) {
   const [review, setReview] = useState([]);
@@ -9,16 +10,16 @@ export default function MovieReviews({ id }) {
   }, [id]);
 
   return (
-    <ul>
-      {review !== [] ? (
+    <ul className={s.reviewsList}>
+      {review.length !== 0 ? (
         review.map(data => (
           <li key={data.id}>
             <h3>{data.author}</h3>
-            <p>{data.content}</p>
+            <p className={s.review}>{data.content}</p>
           </li>
         ))
       ) : (
-        <p>You can leave your review first</p>
+        <p className={s.emptyReviews}>No reviews</p>
       )}
     </ul>
   );

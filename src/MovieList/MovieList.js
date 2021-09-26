@@ -1,5 +1,5 @@
 import { Link, useRouteMatch } from 'react-router-dom';
-import style from './SearchMovieList.module.css';
+import style from './MovieList.module.css';
 
 export default function SearchMovieList({ movieList }) {
   const { path } = useRouteMatch();
