@@ -2,9 +2,7 @@ import { useState } from 'react';
 import { MoviesSearchForm } from './MoviesSearchForm';
 import MovieList from '../MovieList/MovieList';
 import { fetchByInputValue } from '../Api/apiService';
-import s from './MoviesSearch.module.css';
-import { Link, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
-// import { Link, useRouteMatch } from 'react-router-dom';
+import { useHistory, useLocation, useRouteMatch, Route } from 'react-router-dom';
 
 export default function MoviesPage() {
   const [inputValue, setInputvalue] = useState('');
@@ -31,6 +29,8 @@ export default function MoviesPage() {
     });
   }
 
+  console.log(`${path}${location.search}`);
+
   return (
     <div>
       <MoviesSearchForm
@@ -39,14 +39,16 @@ export default function MoviesPage() {
         onBtnClick={handleMovieSearch}
       />
 
-      <ul>
+      <MovieList movieList={searchMoviesList} />
+
+      {/* <ul>
         {searchMoviesList !== [] &&
           searchMoviesList.map(movie => (
             <li className={s.movieItem} key={movie.id}>
               <Link to={`${path}/${movie.id}`}>{movie.name ? movie.name : movie.title}</Link>
             </li>
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }
