@@ -1,22 +1,33 @@
 import { Route, Switch } from 'react-router';
 import { lazy, Suspense } from 'react';
 import AppBar from './AppBar/AppBar';
+import { css } from '@emotion/react';
+import CircleLoader from 'react-spinners/CircleLoader';
 
-const HomePage = lazy(() => {
-  import('./HomePage/HomePage.js');
-});
-const MoviesPage = lazy(() => {
-  import('./MoviesPage/MoviesPage.js');
-});
-const MovieDetailsPage = lazy(() => {
-  import('./MovieDetailsPage/MovieDetailsPage.js');
-});
+const HomePage = lazy(() => import('./HomePage/HomePage.js'));
+const MoviesPage = lazy(() => import('./MoviesPage/MoviesPage.js'));
+const MovieDetailsPage = lazy(() => import('./MovieDetailsPage/MovieDetailsPage.js'));
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: green;
+`;
 
 export default function App() {
   return (
     <>
       <AppBar />
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense
+        fallback={
+          <CircleLoader
+            color={'rgba(34, 139, 34, 0.452)'}
+            loading={true}
+            css={override}
+            size={60}
+          />
+        }
+      >
         <Switch>
           <Route path="/" exact>
             <HomePage />

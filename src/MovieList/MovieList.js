@@ -3,7 +3,6 @@ import style from './MovieList.module.css';
 
 export default function SearchMovieList({ movieList }) {
   const { path } = useRouteMatch();
-  console.log(movieList);
 
   return (
     <ul>
