@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MoviesSearchForm } from './MoviesSearchForm';
 import MovieList from '../MovieList/MovieList';
 import { fetchByInputValue } from '../Api/apiService';
@@ -9,7 +9,11 @@ export default function MoviesPage() {
   const [searchMoviesList, setSearchMoviesList] = useState([]);
   const location = useLocation();
   const history = useHistory();
-
+  console.log('movies page', location);
+  console.log(searchMoviesList);
+  console.log(inputValue);
+  const data = new URLSearchParams(location.search).get('query');
+  console.log(data);
   function handleInputChange(e) {
     setInputvalue(e.currentTarget.value.trim());
   }
@@ -28,6 +32,12 @@ export default function MoviesPage() {
     });
   }
 
+  useEffect(() => {
+    if (data !== null) {
+      fetchByInputValue(data).then(res => setSearchMoviesList(res.results));
+    }
+  }, [data]);
+
   return (
     <div>
       <MoviesSearchForm
@@ -35,7 +45,7 @@ export default function MoviesPage() {
         onChange={handleInputChange}
         onBtnClick={handleMovieSearch}
       />
-      <MovieList movieList={searchMoviesList} />
+      {searchMoviesList.length > 0 && <MovieList list={searchMoviesList} />}
     </div>
   );
 }
