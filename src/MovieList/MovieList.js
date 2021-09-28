@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import style from './MovieList.module.css';
 
 export default function SearchMovieList({ list }) {
@@ -22,3 +23,7 @@ export default function SearchMovieList({ list }) {
     </ul>
   );
 }
+
+SearchMovieList.propTypes = {
+  list: PropTypes.arrayOf(PropTypes.object),
+};

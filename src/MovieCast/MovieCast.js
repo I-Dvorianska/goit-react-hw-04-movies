@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchCast } from 'Api/apiService';
 import actorPhotoe from 'images/actorPhotoe.jpg';
+import PropTypes from 'prop-types';
 import s from 'MovieCast/MovieCast.module.css';
 
 export default function MovieCast({ id }) {
@@ -31,3 +32,7 @@ export default function MovieCast({ id }) {
     </ul>
   );
 }
+
+MovieCast.propTypes = {
+  id: PropTypes.string,
+};

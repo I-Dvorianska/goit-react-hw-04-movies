@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchReviews } from 'Api/apiService';
+import PropTypes from 'prop-types';
 import s from './MovieReviews.module.css';
 
 export default function MovieReviews({ id }) {
@@ -24,3 +25,7 @@ export default function MovieReviews({ id }) {
     </ul>
   );
 }
+
+MovieReviews.propTypes = {
+  id: PropTypes.string,
+};

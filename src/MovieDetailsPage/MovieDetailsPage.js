@@ -7,7 +7,7 @@ import MovieCast from 'MovieCast/MovieCast';
 import MovieReviews from 'MovieReviews/MovieReviews';
 
 export default function MovieDetailsPage() {
-  const [movie, setMovie] = useState([]);
+  const [movie, setMovie] = useState({});
   const { movieId } = useParams();
   const history = useHistory();
   const location = useLocation();
@@ -28,7 +28,7 @@ export default function MovieDetailsPage() {
         &#10094; Go Back
       </button>
       <div className={s.wrapper}>
-        {movie !== [] && <MovieInfo movie={movie} />}
+        {movie !== {} && <MovieInfo movie={movie} moviesLocation={location.state.from} />}
 
         <Route path="/movies/:movieId/cast">
           <MovieCast id={movieId} />

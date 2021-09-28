@@ -1,7 +1,8 @@
 import { NavLink, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import s from 'MovieDetailsPage/MovieInfo/MovieInfo.module.css';
 
-export default function MovieInfo({ movie }) {
+export default function MovieInfo({ movie, moviesLocation }) {
   const { url } = useRouteMatch();
   const IMG_BASE = 'https://image.tmdb.org/t/p/w300';
 
@@ -42,12 +43,26 @@ export default function MovieInfo({ movie }) {
 
       <ul className={s.list}>
         <li>
-          <NavLink className={s.links} activeClassName={s.activeLink} to={`${url}/cast`}>
+          <NavLink
+            className={s.links}
+            activeClassName={s.activeLink}
+            to={{
+              pathname: `${url}/cast`,
+              state: { from: moviesLocation },
+            }}
+          >
             Cast
           </NavLink>
         </li>
         <li>
-          <NavLink className={s.links} activeClassName={s.activeLink} to={`${url}/reviews`}>
+          <NavLink
+            className={s.links}
+            activeClassName={s.activeLink}
+            to={{
+              pathname: `${url}/reviews`,
+              state: { from: moviesLocation },
+            }}
+          >
             Reviews
           </NavLink>
         </li>
@@ -55,3 +70,8 @@ export default function MovieInfo({ movie }) {
     </>
   );
 }
+
+MovieInfo.propTypes = {
+  movie: PropTypes.object,
+  moviesLocation: PropTypes.object,
+};

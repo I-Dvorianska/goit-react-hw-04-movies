@@ -9,11 +9,8 @@ export default function MoviesPage() {
   const [searchMoviesList, setSearchMoviesList] = useState([]);
   const location = useLocation();
   const history = useHistory();
-  console.log('movies page', location);
-  console.log(searchMoviesList);
-  console.log(inputValue);
   const data = new URLSearchParams(location.search).get('query');
-  console.log(data);
+
   function handleInputChange(e) {
     setInputvalue(e.currentTarget.value.trim());
   }
