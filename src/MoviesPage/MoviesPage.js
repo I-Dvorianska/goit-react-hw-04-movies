@@ -15,7 +15,8 @@ export default function MoviesPage() {
     setInputvalue(e.currentTarget.value.trim());
   }
 
-  function handleMovieSearch() {
+  function handleMovieSearch(e) {
+    e.preventDefault();
     if (inputValue) {
       fetchByInputValue(inputValue).then(res => setSearchMoviesList(res.results));
       changeQuery();
@@ -40,7 +41,7 @@ export default function MoviesPage() {
       <MoviesSearchForm
         inputValue={inputValue}
         onChange={handleInputChange}
-        onBtnClick={handleMovieSearch}
+        onSubmit={handleMovieSearch}
       />
       {searchMoviesList.length > 0 && <MovieList list={searchMoviesList} />}
     </div>
