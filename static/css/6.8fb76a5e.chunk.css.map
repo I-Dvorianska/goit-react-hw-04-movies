@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/MovieList/MovieList.module.css"],"names":[],"mappings":"AAAA,4BACE,eAAgB,CAChB,eACF","file":"6.8fb76a5e.chunk.css","sourcesContent":[".movieItem {\r\n  list-style: none;\r\n  margin-top: 10px;\r\n}\r\n"]}
